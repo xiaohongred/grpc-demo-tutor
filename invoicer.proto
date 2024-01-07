@@ -1,0 +1,28 @@
+syntax = "proto3";
+option go_package= "github.com/xiaohongred/demo-grpc/invoicer";
+message SayHelloReq {
+  string name = 1;
+}
+
+message SayHelloRsp {
+  string name = 1;
+}
+message Amount{
+  int64 amount = 1;
+  string currency = 2;
+}
+message CreateReq {
+  Amount amount = 1;
+  string from = 2;
+  string to = 3;
+}
+message CreateRsp {
+  bytes pdf = 1;
+  bytes docx = 2;
+}
+
+
+service Invoicer {
+  rpc SayHello (SayHelloReq) returns (SayHelloRsp);
+  rpc Create(CreateReq) returns (CreateRsp);
+}
